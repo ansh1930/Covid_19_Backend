@@ -13,10 +13,14 @@ const Keys = require('../../config/keys.js')
 //MAIL
 var transporter = nodemailer.createTransport({
   service: "gmail",
+  host:'smtp.gmail.com',
   auth: {
-    user: `${Keys.EMAIL}`,
-    pass: `${Keys.EMAIL_PASSWORD}`,
+    user: Keys.EMAIL,
+    pass: Keys.EMAIL_PASSWORD,
   },
+  port: 465,
+  secure: true, // use SSL
+
 });
 
 
@@ -51,7 +55,7 @@ const SendMail = (To_Patient, To_Doctor,Meet_ID,Doctor_name,Patient_name) => {
 
   transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
-      console.log(error);
+      console.log("error"+error);
     } else {
       console.log("Email sent: " + info.response);
     }
@@ -395,7 +399,7 @@ router.post("/AcceptAppointment", (req, res) => {
         console.log(response.data.Meeting_ID)
         SendMail(res.PatientEmail,res.DoctorEmail,response.data.Meeting_ID,res.Doctorname,res.Patientname)
       }).catch((error)=>{
-        // console.log(error)
+        console.log(error)
       })
       // return res.json({ message: "Done" });
     } else {
