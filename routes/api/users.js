@@ -17,10 +17,8 @@ var transporter = nodemailer.createTransport({
   port: 465,
   secure: true, // use SSL
   auth: {
-    // user: Keys.EMAIL,
-    // pass: Keys.EMAIL_PASSWORD,
-    user: 'betterlife2134@gmail.com',
-    pass: '@nkur2134',
+    user: Keys.EMAIL,
+    pass: Keys.EMAIL_PASSWORD,
   },
 
 });
@@ -28,7 +26,7 @@ var transporter = nodemailer.createTransport({
 
 const SendMail = (To_Patient, To_Doctor,Meet_ID,Doctor_name,Patient_name) => {
   var mailOptions = {
-    from: `etterlife2134@gmail.com`,
+    from: `${Keys.EMAIL}`,
     to: `${To_Patient},${To_Doctor}`,
     subject: "Docotor Appiontment Confirmation",
     html:  `
