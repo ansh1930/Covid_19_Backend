@@ -14,19 +14,21 @@ const Keys = require('../../config/keys.js')
 var transporter = nodemailer.createTransport({
   // service: "gmail",
   host:'smtp.gmail.com',
-  auth: {
-    user: Keys.EMAIL,
-    pass: Keys.EMAIL_PASSWORD,
-  },
   port: 465,
-  secure: false, // use SSL
+  secure: true, // use SSL
+  auth: {
+    // user: Keys.EMAIL,
+    // pass: Keys.EMAIL_PASSWORD,
+    user: 'betterlife2134@gmail.com',
+    pass: '@nkur2134',
+  },
 
 });
 
 
 const SendMail = (To_Patient, To_Doctor,Meet_ID,Doctor_name,Patient_name) => {
   var mailOptions = {
-    from: `${Keys.EMAIL}`,
+    from: `etterlife2134@gmail.com`,
     to: `${To_Patient},${To_Doctor}`,
     subject: "Docotor Appiontment Confirmation",
     html:  `
@@ -399,7 +401,7 @@ router.post("/AcceptAppointment", (req, res) => {
         console.log(response.data.Meeting_ID)
         SendMail(res.PatientEmail,res.DoctorEmail,response.data.Meeting_ID,res.Doctorname,res.Patientname)
       }).catch((error)=>{
-        console.log(error)
+        console.log("Errror:  "+error)
       })
       // return res.json({ message: "Done" });
     } else {
