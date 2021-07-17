@@ -12,14 +12,14 @@ const validateLoginInput = require("../../validation/login");
 const Keys = require('../../config/keys.js')
 //MAIL
 var transporter = nodemailer.createTransport({
-  service: "gmail",
+  // service: "gmail",
   host:'smtp.gmail.com',
   auth: {
     user: Keys.EMAIL,
     pass: Keys.EMAIL_PASSWORD,
   },
   port: 465,
-  secure: true, // use SSL
+  secure: false, // use SSL
 
 });
 
